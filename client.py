@@ -25,11 +25,12 @@ def checkAndPrint(delay, dont):
             print(net)
 
 conn = rpyc.connect("127.0.0.1", 18888)
-conn.root.setCallback(myprint)
+conn.root.setCallback(myprint, user_name)
 
 user_name = input("Please enter your name: ")
+destination = input("Please enter the name of the person you want to talk to: ")
 print("Type exit to leave the conversation")
-conn.root.serverPrint(user_name)
+conn.root.serverPrint(user_name, destination)
 reach = conn.root.replyLength(1)
 
 try:
@@ -41,14 +42,14 @@ try:
         if input_var == "exit":
             time.sleep(1)
             input_var = user_name + " has left the conversation"
-            conn.root.setCallback(myprint)
+            conn.root.setCallback(myprint, user_name)
             conn.root.serverPrintMessage(input_var)
             conn.root.serverExit(user_name)
             break
         reach += 1
         input_var = user_name + ":" + input_var
-        conn.root.setCallback(myprint)
-        conn.root.serverPrintMessage(input_var)
+        conn.root.setCallback(myprint, user_name)
+        conn.root.serverPrintMessage(input_var, destination)
     
 except Exception as errtxt:
     print("You have left the room")
