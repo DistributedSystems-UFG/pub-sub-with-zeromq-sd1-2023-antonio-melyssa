@@ -65,3 +65,7 @@ The group messaging application consists of two main components:
 - It provides an interactive command-line interface for sending messages.
 - The client connects to the RPyC server using the specified host and port.
 - It utilizes the ZeroMQ library to publish and subscribe to group messages.
+
+## Students
+Antonio Emilio - 201905481
+Melyssa Mariana - 201905503
